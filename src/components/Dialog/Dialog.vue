@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class='dialog'
+       v-show='isVisible'>
     <h3>{{title}}</h3>
     <p>{{content}}</p>
     <button @click="test">点击事件</button>
@@ -18,9 +19,22 @@ export default {
       default: "内容"
     }
   },
+  data: function() {
+    return {
+      isVisible: false
+    };
+  },
   methods: {
     test() {
       this.$emit("test", "1234");
+    },
+    show() {
+      this.isVisible = true;
+      this.$emit("show");
+    },
+    hide() {
+      this.isVisible = false;
+      this.$emit("hide");
     }
   }
 };
